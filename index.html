@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahisha Pokharel - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --accent-color: #4fc3f7;
+            --text-color: #333;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header-text p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: opacity 0.3s;
+        }
+        
+        .contact-info a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Navigation - Centered */
+        nav {
+            background-color: var(--secondary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 0;
+            position: relative;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-links li {
+            margin: 0 1rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            position: absolute;
+            left: 20px;
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .about-skills {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .skill-item {
+            background-color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+            color: var(--secondary-color);
+            border: 1px solid #ddd;
+        }
+        
+        /* Experience & Education */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--accent-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 3px solid var(--accent-color);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -10px;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .timeline-content h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .timeline-content .date {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .timeline-content ul {
+            padding-left: 20px;
+        }
+        
+        .timeline-content li {
+            margin-bottom: 0.3rem;
+        }
+        
+        /* Publications Section */
+        .publications-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .publication-item {
+            background-color: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .publication-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .publication-item h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-item p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .publication-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .publication-link {
+            display: inline-block;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .publication-link:hover {
+            color: var(--accent-color);
+        }
+
+        .publication-link i {
+            margin-right: 0.5rem;
+        }
+        
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary-color);
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+                padding: 0.5rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .left::after, .right::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-content">
+            <img src="images/RahishaPortfolio.jpeg" alt="Rahisha Pokharel" class="profile-img">
+            <div class="header-text">
+                <h1>Rahisha Pokharel</h1>
+                <p>Project Manager & IT Professional</p>
+                <div class="contact-info">
+                    <a href="mailto:rahisha.pokharel2022@gmail.com"><i class="fas fa-envelope"></i> rahisha.pokharel2022@gmail.com</a>
+                   <!-- <a href="tel:+16055215094"><i class="fas fa-phone"></i> +1 (605) 521-5094</a>-->
+                  <a href="#"><i class="fas fa-map-marker-alt"></i> Vermillion City, South Dakota, USA</a>
+                    <a href="https://www.linkedin.com/in/rahisha-pokharel-107684146/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://www.researchgate.net/profile/Rahisha-Pokharel" target="_blank" rel="noopener noreferrer"><i class="fab fa-researchgate"></i> ResearchGate</a>
+                    <a href="https://github.com/Rahisha-rp" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation - Now Centered -->
+    <nav>
+        <div class="container nav-container">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+	  <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Professional Summary</h3>
+                    <p>
+                        I am a Project Manager and IT professional with over 4 years of experience in leading and supporting 
+                        projects across IT systems, web designing, content development, and UI/UX design. I've led cross-functional 
+                        teams on diverse projects—from launching enterprise HR software to redesigning websites and driving content 
+                        strategies. Whether managing stakeholders or streamlining workflows, I focus on delivering solutions that are 
+                        efficient, scalable, and user-centered. My experience includes roles in IT management, technical writing, 
+                        graphic design, and fundraising. This has helped me build strong skills in project coordination, stakeholder 
+                        communication, and problem-solving. I take responsibility for the full project cycle — from planning to delivery.
+                    </p>
+                </div>
+                <div class="about-skills">
+                    <h3>Skills</h3>
+                    <div class="skills-list">
+                        <span class="skill-item">HTML/CSS/JavaScript</span>
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">DBMS</span>
+                        <span class="skill-item">MS Office</span>
+                        <span class="skill-item">Eclipse</span>
+                        <span class="skill-item">Visual Studio</span>
+                        <span class="skill-item">WEKA</span>
+                        <span class="skill-item">MATLAB</span>
+                        <span class="skill-item">Adobe XD</span>
+                        <span class="skill-item">Figma</span>
+                        <span class="skill-item">Canva</span>
+                        <span class="skill-item">Adobe Photoshop</span>
+                        <span class="skill-item">Problem Solving</span>
+                        <span class="skill-item">Leadership</span>
+                        <span class="skill-item">Analytical Thinking</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Work Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Face to Face Fund Raising</h3>
+                        <h4>Oxfam Svergie</h4>
+                        <span class="date">Aug 2024 - Oct 2024 | Gothenburg, Sweden</span>
+                        <ul>
+                            <li>Onboarding potential members of Oxfam.</li>
+                            <li>Build and maintain relationships with current and prospective donors.</li>
+                            <li>Ensure timely and personalized acknowledgments of donations.</li>
+                            <li>Communicate the organization's mission and impact to engage and inspire potential donors.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Direct Dialog</h3>
+                        <h4>Svenska Röda Korset (Swedish Red Cross)</h4>
+                        <span class="date">Nov 2023 - May 2024 | Gothenburg, Sweden</span>
+                        <ul>
+                            <li>Onboard potential members to RedCross by providing comprehensive orientations and support.</li>
+                            <li>Build and maintain strong relationships with current and prospective donors.</li>
+                            <li>Ensure timely and personalized acknowledgment of donations to enhance donor satisfaction and loyalty.</li>
+                            <li>Communicate Redcross's mission and impact through compelling storytelling and data-driven insights.</li>
+                            <li>Utilize predictive modeling techniques to optimize fundraising efforts.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Freelance Graphic Designer</h3>
+                        <span class="date">Sep 2022 - Aug 2023 | Kathmandu, Nepal</span>
+                        <ul>
+                            <li>Designed logos, color schemes, and marketing materials to enhance client brand visibility.</li>
+                            <li>Conducted user research and created wireframes and prototypes for websites and applications.</li>
+                            <li>Created visually engaging social media content and managed campaigns across Instagram and Facebook.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Deputy Manager, IT Department</h3>
+                        <h4>Nepal Reinsurance Company Limited</h4>
+                        <span class="date">Aug 2021 - Aug 2022 | Kathmandu, Nepal</span>
+                        <ul>
+                            <li>Led the design and launch of a new company website, ensuring brand alignment and SEO optimization.</li>
+                            <li>Designed and maintained network infrastructure for secure and efficient data flow.</li>
+                            <li>Spearheaded installation and configuration of new HR software.</li>
+                            <li>Managed email security protocols to mitigate breaches and enhance system resilience.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Technical Writer</h3>
+                        <h4>ContentioLab</h4>
+                        <span class="date">Sep 2019 - Aug 2021 | Kathmandu, Nepal</span>
+                        <ul>
+                            <li>Created user-friendly documentation, guides, and FAQs based on feedback.</li>
+                            <li>Developed content strategies aligned with product goals.</li>
+                            <li>Streamlined content creation using single-sourcing and repurposing techniques.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Master's Degree in Computer Science (Specializing AI)</h3>
+                        <span class="date">Current</span>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Master's Degree in Informatics</h3>
+                        <h4>University West, Trollhättan, Sweden</h4>
+                        <span class="date">Aug 2023 - Jun 2024</span>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>B. Tech Degree in Computer Science and Engineering</h3>
+                        <h4>Jain University, Bangalore, India</h4>
+                        <span class="date">Aug 2014 - Jul 2018</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Publications</h2>
+            </div>
+
+                    <div class="publication-item">
+                    <h3>Comparative Study of Various Classifiers on Hypothyroid Data Using WEKA</h3>
+                    <p>Presented at the Research Symposium on Advancements in Engineering.</p>
+                    <div class="publication-links">
+                        <a href="https://www.researchgate.net/publication/388068717_COMPARATIVE_STUDY_OF_VARIOUS_CLASSIFIERS_ON_HYPOTHYROID_DATA_USING_WEKA" target="_blank" rel="noopener noreferrer" class="publication-link"><i class="fas fa-link"></i>View Publication</a>
+                    </div>
+                </div>
+                <div class="publication-item">
+                    <h3>Facial Expression Recognition System</h3>
+                    <p>Published in TEST Engineering and Management (2019).</p>
+                    <div class="publication-links">
+                        <a href="http://testmagzine.biz/index.php/testmagzine/article/view/3043" target="_blank" rel="noopener noreferrer" class="publication-link"><i class="fas fa-link"></i>Using Viola Jones </a>
+                        <a href="https://www.researchgate.net/publication/354362562_Facial_Expression_Recognition_System" target="_blank" rel="noopener noreferrer" class="publication-link"><i class="fas fa-link"></i>Using CNN</a>
+                    </div>
+                </div>
+                <div class="publication-item">
+                    <h3>Securing Mechanism of Healthcare Data on Cloud</h3>
+                    <p>Published in the International Journal of Trend in Scientific Research and Development.</p>
+                    <div class="publication-links">
+                        <a href="https://www.researchgate.net/publication/368098400_Securing_Mechanism_of_Healthcare_Data_on_Cloud" target="_blank" rel="noopener noreferrer" class="publication-link"><i class="fas fa-link"></i>View Publication</a>
+                    </div>
+                </div>
+                <div class="publication-item">
+                    <h3>Personalized Recommendation System; Movie Recommendation System</h3>
+                    <p>Presented at the National Conference on Innovations in Computational Science and Information Technology (NCICSIT-18).</p>
+                    <div class="publication-links">
+                        <a href="https://ijitra.com/index.php/ijitra/article/view/40" target="_blank" rel="noopener noreferrer" class="publication-link"><i class="fas fa-link"></i>View Publication</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/rahisha-pokharel-107684146/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Rahisha-rp" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.researchgate.net/profile/Rahisha-Pokharel" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
+            </div>
+            <p>&copy; 2024 Rahisha Pokharel. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to a server
+            // For this example, we'll just show an alert
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
